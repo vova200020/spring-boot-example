@@ -1,4 +1,11 @@
 package com.ocheret.springbootexample.exception;
 
-public class APIRequestException {
+public class APIRequestException extends RuntimeException{
+    public APIRequestException(String message) {
+        super(message);
+    }
+
+    public APIRequestException(String message, Throwable cause) {
+        super(message, cause);
+    }
 }
