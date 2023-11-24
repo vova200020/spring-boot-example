@@ -1,15 +1,11 @@
 package com.ocheret.springbootexample;
 
-import org.springframework.boot.ConfigurableBootstrapContext;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 
 public class Main {
 

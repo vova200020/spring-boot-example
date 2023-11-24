@@ -1,7 +1,9 @@
 package com.ocheret.springbootexample.customer;
 
-import com.ocheret.springbootexample.exception.APIExceptionHandler;
-import com.ocheret.springbootexample.exception.APIRequestException;
+import com.ocheret.springbootexample.model.CustomerModel;
+import com.ocheret.springbootexample.repository.CustomerRepository;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,7 +13,11 @@ import java.util.Optional;
 
 @RestController
 public class CustomerController {
+    private CustomerRepository customerRepository;
 
+    public void CustomerController(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {
@@ -19,13 +25,13 @@ public class CustomerController {
     }
 
     @GetMapping(path = "api/v1/customers")
-    public List<Customer> getCustomers(){
-        return customerService.getAllCustomers();
+    public ResponseEntity<List<CustomerModel>> getCustomers(){
+       return ResponseEntity.ok(this.customerRepository.findAll());
+        //return customerService.getAllCustomers();
     }
 
     @GetMapping(path = "api/v1/customers/{customerId}")
     public Optional<Customer> getCustomers(@PathVariable("customerId")Integer customerId)  {
-   // throw new APIRequestException("No Customer with this ID");
 
         return customerService.getCustomer(customerId);
     }
