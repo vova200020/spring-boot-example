@@ -25,9 +25,9 @@ public class CustomerController {
     }
 
     @GetMapping(path = "api/v1/customers")
-    public ResponseEntity<List<CustomerModel>> getCustomers(){
-       return ResponseEntity.ok(this.customerRepository.findAll());
-        //return customerService.getAllCustomers();
+    public List<Customer> getCustomers(){
+       //return ResponseEntity.ok(this.customerRepository.findAll());
+        return customerService.getAllCustomers();
     }
 
     @GetMapping(path = "api/v1/customers/{customerId}")
