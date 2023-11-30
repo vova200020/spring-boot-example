@@ -2,6 +2,7 @@ package com.ocheret.springbootexample.customer;
 
 import com.ocheret.springbootexample.exception.APIExceptionHandler;
 import com.ocheret.springbootexample.exception.APIRequestException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class CustomerService {
 
     }
 
-    public CustomerService(CustomerDao customerDao){
+    public CustomerService(@Qualifier("jpa") CustomerDao customerDao){
         this.customerDao = customerDao;
     }
 

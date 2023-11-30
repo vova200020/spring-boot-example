@@ -1,9 +1,5 @@
 package com.ocheret.springbootexample.customer;
 
-import com.ocheret.springbootexample.model.CustomerModel;
-import com.ocheret.springbootexample.repository.CustomerRepository;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
