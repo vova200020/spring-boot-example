@@ -2,6 +2,7 @@ package com.ocheret.springbootexample.customer;
 
 import com.ocheret.springbootexample.exception.APIExceptionHandler;
 import com.ocheret.springbootexample.exception.APIRequestException;
+import com.ocheret.springbootexample.exception.DuplicateResourceException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,18 @@ public class CustomerService {
 
     public List<Customer> getAllCustomers(){
         return customerDao.selectAllCustomers();
+    }
+
+    public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
+        String email = customerRegistrationRequest.email();
+        if(customerDao.existsPersonWithEmail(email)){
+            throw new DuplicateResourceException("Record with a given email is already taken");
+        }
+        Customer customer = new Customer(
+                customerRegistrationRequest.name(),
+                customerRegistrationRequest.email(),
+                customerRegistrationRequest.age()
+        );
+        customerDao.insertCustomer(customer);
     }
 }
