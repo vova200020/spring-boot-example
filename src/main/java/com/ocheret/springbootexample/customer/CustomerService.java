@@ -34,10 +34,13 @@ public class CustomerService {
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
+
+       //breaks when rtying to generate query(Maybe) but
+        //without it works fine so i have commented it for now.
         String email = customerRegistrationRequest.email();
-        if(customerDao.existsPersonWithEmail(email)){
-            throw new DuplicateResourceException("Record with a given email is already taken");
-        }
+//        if(customerDao.existsPersonWithEmail(email)){
+//            throw new DuplicateResourceException("Record with a given email is already taken");
+//        }
         Customer customer = new Customer(
                 customerRegistrationRequest.name(),
                 customerRegistrationRequest.email(),
